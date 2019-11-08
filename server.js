@@ -52,8 +52,8 @@ app.get("/scraped", function (req, res) {
             var result = {};
 
             result.title = $(element).find("h3").find("a").text();
-            result.link = $(element).find("h3").children("a").attr("href");
-           result.image = $(element).find("a").find("img").attr("data-lazy-src");
+            result.link = "https://www.adventure.com" + $(element).find("h3").children("a").attr("href");
+            result.image = $(element).find("a").find("img").attr("data-lazy-src");
 
 
             db.Article.create(result)
@@ -70,7 +70,15 @@ app.get("/scraped", function (req, res) {
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res){
-    //TODO: finish the route so it grabs all articles
+    db.Article.find({})
+      .then(function(dbArticle) {
+        // If we were able to successfully find Articles, send them back to the client
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
 });
 
 // Route for grabbing specific article by id, populate with it's note. 
