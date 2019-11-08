@@ -1,0 +1,27 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "pull articles from remote site and list them for you browse and read at your convenience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamnorton2024/scraper.git"
+  },
+  "author": "Adam Norton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamnorton2024/scraper/issues"
+  },
+  "homepage": "https://github.com/adamnorton2024/scraper#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.7.8",
+    "morgan": "^1.9.1"
+  }
+}
