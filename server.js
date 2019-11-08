@@ -1,5 +1,6 @@
 // Dependencies
 var express = require("express");
+var exphbs = require("express-handlebars");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
@@ -23,6 +24,13 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
+// Handlebars
+app.engine("handlebars", exphbs({
+    defaultLayout: "main",
+}));
+
+app.set("view engine", "handlebars");
+
 // Connect to the Mongo DB 
 // mongoose.connect("mongodb://localhost/scraper", { useNewUrlParser: true });
 
@@ -32,31 +40,9 @@ mongoose.connect(MONGODB_URI);
 
 // Routes
 
-// Scrapes the artnews website for the article data
-// app.get("/scraped", function (req, res) {
-//     axios.get("http://www.artnews.com/category/news/").then(function (response) {
-//         var $ = cheerio.load(response.data);
-
-//         $("h2.entry-title").each(function (i, element) {
-//             var result = {};
-
-//             result.title = $(element).text();
-
-//             result.link = $(element).children("a").attr("href");
-
-//             result.summary = $(element).siblings(".entry-summary").text().trim();
-
-//             db.Article.create(result)
-//                 .then(function (dbArticle) {
-//                     console.log(dbArticle);
-//                 })
-//                 .catch(function (err) {
-//                     console.log(err);
-//                 });
-//         });
-//     });
-//     res.send("Scrape Complete");
-// });
+app.get("/", function(req, res){
+    res.render("index");
+});
 
 app.get("/scraped", function (req, res) {
     axios.get("http://www.adventure.com").then(function (response) {

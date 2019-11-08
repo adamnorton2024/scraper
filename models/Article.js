@@ -17,8 +17,8 @@ var ArticleSchema = new Schema({
         required: true
     },
     image: {
-        type: String
-        //required: true
+        type: String,
+        required: true
     },
     // `comment` is an object that stores a comment id
     // The ref property links the ObjectId to the comment model
