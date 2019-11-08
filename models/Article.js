@@ -8,18 +8,18 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     // `title` is required and of type String
     title: {
-        type: String
-        //required: true
+        type: String,
+        required: true
     },
     // `link` is required and of type String
     link: {
+        type: String,
+        required: true
+    },
+    image: {
         type: String
         //required: true
     },
-    // image: {
-    //     type: String,
-    //     required: true
-    // },
     // `comment` is an object that stores a comment id
     // The ref property links the ObjectId to the comment model
     // This allows us to populate the Article with an associated comment

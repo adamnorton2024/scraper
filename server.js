@@ -62,14 +62,13 @@ app.get("/scraped", function (req, res) {
     axios.get("http://www.adventure.com").then(function (response) {
         var $ = cheerio.load(response.data);
 
-        $("h3").each(function (i, element) {
+        $(".card").each(function (i, element) {
             var result = {};
 
-            result.title = $(element).children("a").text();
-            result.link = $(element).children("a").attr("href");
-           // result.image = $(element).children("img").attr("src");
+            result.title = $(element).find("h3").find("a").text();
+            result.link = $(element).find("h3").children("a").attr("href");
+           result.image = $(element).find("a").find("img").attr("data-lazy-src");
 
-            //result.summary = $(element).siblings(".entry-summary").text().trim();
 
             db.Article.create(result)
                 .then(function (dbArticle) {
