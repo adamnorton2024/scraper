@@ -1,3 +1,12 @@
+/* * {
+    border: 1px dotted white;
+} */
+
+.logo-link, .logo-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
 
 
 .jumbotron{
@@ -19,4 +28,18 @@
 
 #tagline {
     text-shadow: 2px 2px black'
+}
+
+.btn {
+    width: 9em;
+}
+
+.btn-sm {
+    width: 5em;
+    font-size: .7em;
+}
+
+.btn-sm:hover {
+    color: black;
+    background-color: lightblue;
 }

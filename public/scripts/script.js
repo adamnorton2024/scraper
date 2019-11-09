@@ -1,11 +1,66 @@
-// Grab the articles as a json
-$.getJSON("/articles", function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $("#articles").append(
-        "<div class='card col-lg-5 col-md-12 mt-3 p-0'><a href='" + data[i].link + "' target='_blank'><img class='img-fluid p-0' src='" + data[i].image + "' class='card-img-top'><div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5></div></div></a>"
-    );
-
-  }
+// Click to scrape
+$("#btn-scrape").on("click", function () {
+  $.ajax({
+    method: "GET",
+    url: "/scraped",
+  }).then(function (data) {
+    console.log(data)
+    location.reload();
+  })
 });
+
+// Click to save article
+$(".save").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "POST",
+    url: "/saved/" + thisId
+  }).then(function (data) {
+    location.reload();
+  })
+});
+
+// Click to delete from saved list
+$(".delete").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "POST",
+    url: "/delete/" + thisId
+  }).then(function (data) {
+    location.reload();
+  })
+});
+
+// Click to save note
+$(".save-note").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "POST",
+    url: "/articles/" + thisId,
+    data: {
+      body: $("#noteText" + thisId).val()
+
+    }
+  }).then(function (data) {
+    // Log the response
+    console.log(data);
+    // Empty the notes section
+    $("#noteText" + thisId).val("");
+    $(".modalNote").modal("hide");
+    window.location = "/saved"
+  });
+});
+
+// Click to delete a note
+$(".deleteNote").on("click", function () {
+  var thisId = $(this).attr("data-note-id");
+  $.ajax({
+    method: "POST",
+    url: "/deleteNote/" + thisId,
+  }).then(function (data) {
+    // Log the response
+    console.log(data);
+    window.location = "/saved"
+  })
+})
+

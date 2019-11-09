@@ -2,9 +2,13 @@
     <div class="class row">
         <div class="col-sm-12 d-flex flex-wrap justify-content-around" id="articles">
             {{#each articles}}
-                {{> article }}
+            {{> saved-article }}
             {{/each}}
 
         </div>
     </div>
 </div>
+
+{{#each articles}}
+{{> modal }}
+{{/each}}
