@@ -1,11 +1,10 @@
 // Click to scrape
-$("#btn-scrape").on("click", function () {
+$(document).ready( function () {
   $.ajax({
     method: "GET",
     url: "/scraped",
   }).then(function (data) {
     console.log(data)
-    location.reload();
   })
 });
 

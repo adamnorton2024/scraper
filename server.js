@@ -101,9 +101,8 @@ app.get("/scraped", function (req, res) {
                     console.log(err);
                 });
         });
-        res.send("Scrape Complete");
+        res.redirect("/");
     });
-    
 });
 
 // Route for getting all Articles from the db
